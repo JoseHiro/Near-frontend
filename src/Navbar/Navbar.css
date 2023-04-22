@@ -1,0 +1,15 @@
+#navbar {
+  background-color: white !important;
+}
+
+.nav_links {
+  display: flex;
+  font-weight: bold;
+}
+
+.nav_links a {
+  margin-right:30px;
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+}
