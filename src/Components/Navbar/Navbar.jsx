@@ -8,6 +8,8 @@ const Navbar = (props) =>{
     props.signOut();
   }
 
+  const userUrl = '/user:' + props.userId
+
   return (
     <div id='navbar'>
       <nav className="nav_links">
@@ -20,8 +22,7 @@ const Navbar = (props) =>{
           <a href="/login">Login</a>
           </>
         }
-
-        <a href="/user">User</a>
+        <a href={userUrl} >User</a>
       </nav>
     </div>
   )

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './form.css'
 
 function Form(){
-
   const [formValue, setFormValue] = useState({ name: "", email: "", password:""})
 
   const handleChange = (e) =>{
