@@ -1,28 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = (props) =>{
-
   const handleSignOut = (e) =>{
     e.preventDefault();
     props.signOut();
   }
 
-  const userUrl = '/user:' + props.userId
+  const userUrl = '/user/' + props.userId;
 
   return (
     <div id='navbar'>
       <nav className="nav_links">
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
         { props.isLoggedIn?
-          <a href="/signout" onClick={handleSignOut}>Signout</a>
+          <>
+            <Link to="/signout" onClick={handleSignOut}>Signout</Link>
+            <Link to={userUrl}>User</Link>
+          </>
           :
           <>
-          <a href="/signin">Signin</a>
-          <a href="/login">Login</a>
+            <Link to="/signin">Signin</Link>
+            <Link to="/login">Login</Link>
           </>
         }
-        <a href={userUrl} >User</a>
       </nav>
     </div>
   )

@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Form from './Pages/SignIn/Form'
 import Login from './Pages/Home/Login/Login'
 import Edit from './Pages/User/Edit/Edit';
+import Delete from './Pages/User/Delete/Delete';
 import './index.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     const expireDate = localStorage.getItem('expiryDate');
 
     if(!token || !expireDate){
+      console.log('No token')
       //logout handler
       return;
     }
@@ -31,7 +33,7 @@ function App() {
     setLoggedIn(true);
   },[])
 
-  const handleUpdateLogin = () =>{
+  const handleUpdateLogin = () => {
     const token = localStorage.getItem('token');
     const expireDate = localStorage.getItem('expiryDate');
     const userId = localStorage.getItem('userId');
@@ -49,16 +51,15 @@ function App() {
 
   return (<>
     <Navbar isLoggedIn={isLoggedIn} userId={loginState.userId} signOut={handleSignOut}/>
-    <BrowserRouter>
       <Routes>
         <Route path={`/`} element={<Home/>}></Route>
         <Route path={`/signin`} element={<Form/>}></Route>
         <Route path={`/login`} element={<Login login={handleUpdateLogin}/>}></Route>
-        <Route path={`/user/:id`} element={<User userId={loginState.userId}/>}></Route>
-        <Route path={`/user/edit`} element={<Edit userId={loginState.userId}/>} ></Route>
-        <Route path={`/user/payment`} element={<User/>}></Route>
+        <Route path={`/user/:userId`} element={<User userId={loginState.userId}/>}></Route>
+        <Route path={`/user/edit/:userId`} element={<Edit userId={loginState.userId}/>} ></Route>
+        <Route path={`/user/payment/:userId`} element={<User/>}></Route>
+        <Route path={`/user/delete/:userId`} element={<Delete signOut={handleSignOut}/>}></Route>
       </Routes>
-    </BrowserRouter>
   </>
   );
 }
