@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login(){
+function Login(props){
 
   const [input, setInput] = useState({email: '', password:''})
-
-  const navigate = useNavigate();
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
     setInput(prevValue => { return {...prevValue, [name]: value }})
   }
 
-  const handleSubmit = (e) =>{
+  const navigate = useNavigate();
+
+  const handleLogin = (e) =>{
     e.preventDefault();
     fetch('http://localhost:8080/login', {
       method: "POST",
@@ -35,16 +35,19 @@ function Login(){
       );
       localStorage.setItem('expiryDate', expiryDate.toISOString());
     })
-
-    setInput({email: '', password: ''})
-    navigate('/');
+    .then(() =>{
+      props.login();
+    })
+    .then(() => {
+      navigate('/');
+      setInput({email: '', password: ''})
+    })
   }
-
 
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <label>Email</label>
         <input type="email" name="email" value={input.email} onChange={handleChange}></input>
         <label>Password</label>
