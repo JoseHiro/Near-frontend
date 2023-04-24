@@ -12,7 +12,7 @@ function Login(props){
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) =>{
+  const handlePostLogin = (e) =>{
     e.preventDefault();
     fetch('http://localhost:8080/login', {
       method: "POST",
@@ -47,7 +47,7 @@ function Login(props){
 
   return (
     <section>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handlePostLogin}>
         <label>Email</label>
         <input type="email" name="email" value={input.email} onChange={handleChange}></input>
         <label>Password</label>
