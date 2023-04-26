@@ -13,11 +13,12 @@ const Navbar = (props) =>{
   return (
     <div id='navbar'>
       <nav className="nav_links">
-        <Link to="/">Home</Link>
+        <Link className="nav_title" to="/">Near</Link>
         { props.isLoggedIn?
           <>
             <Link to="/signout" onClick={handleSignOut}>Signout</Link>
             <Link to={userUrl}>User</Link>
+            <p>Hello User!</p>
           </>
           :
           <>
