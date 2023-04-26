@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import User from './Pages/User/User';
 import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
 import Form from './Pages/SignIn/Form'
-import Login from './Pages/Home/Login/Login'
+import Login from './Pages/Login/Login'
 import Edit from './Pages/User/Edit/Edit';
 import Delete from './Pages/User/Delete/Delete';
 import './index.css';
@@ -49,17 +50,19 @@ function App() {
     setLoggedIn(false);
   }
 
-  return (<>
+  return (
+  <>
     <Navbar isLoggedIn={isLoggedIn} userId={loginState.userId} signOut={handleSignOut}/>
-      <Routes>
-        <Route path={`/`} element={<Home/>}></Route>
-        <Route path={`/signin`} element={<Form/>}></Route>
-        <Route path={`/login`} element={<Login login={handleUpdateLogin}/>}></Route>
-        <Route path={`/user/:userId`} element={<User userId={loginState.userId}/>}></Route>
-        <Route path={`/user/edit/:userId`} element={<Edit userId={loginState.userId}/>} ></Route>
-        <Route path={`/user/payment/:userId`} element={<User/>}></Route>
-        <Route path={`/user/delete/:userId`} element={<Delete signOut={handleSignOut}/>}></Route>
-      </Routes>
+    <Routes>
+      <Route path={`/`} element={<Home/>}></Route>
+      <Route path={`/signin`} element={<Form/>}></Route>
+      <Route path={`/login`} element={<Login login={handleUpdateLogin}/>}></Route>
+      <Route path={`/user/:userId`} element={<User userId={loginState.userId}/>}></Route>
+      <Route path={`/user/edit/:userId`} element={<Edit userId={loginState.userId}/>} ></Route>
+      <Route path={`/user/payment/:userId`} element={<User/>}></Route>
+      <Route path={`/user/delete/:userId`} element={<Delete signOut={handleSignOut}/>}></Route>
+    </Routes>
+    <Footer/>
   </>
   );
 }

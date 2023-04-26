@@ -1,15 +1,25 @@
 #navbar {
   background-color: white !important;
+  height: 40px;
 }
 
 .nav_links {
   display: flex;
   font-weight: bold;
+  align-items: center;
 }
 
 .nav_links a {
   margin-right:30px;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 20px;
   color: black;
+}
+
+.nav_links p{
+  text-align: right;
+}
+
+.nav_title {
+  font-size: 30px !important;
 }
