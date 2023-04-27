@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import User from './Pages/User/User';
 import Navbar from './Components/Navbar/Navbar';
@@ -13,6 +13,7 @@ import './index.css';
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [loginState, setLogin] = useState({token: null, userId: null})
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -48,6 +49,7 @@ function App() {
     localStorage.removeItem('expiryDate');
     localStorage.removeItem('userId');
     setLoggedIn(false);
+    navigate('/');
   }
 
   return (
