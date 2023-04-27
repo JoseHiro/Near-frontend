@@ -1,0 +1,15 @@
+#body_container {
+  text-align: center;
+}
+
+.body_explanation_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.body_explanation_container article{
+  background: var(--background-white);
+  box-shadow: var(--box-shadow);
+  margin: 5% 10% 0 10%;
+  height: 200px;
+}

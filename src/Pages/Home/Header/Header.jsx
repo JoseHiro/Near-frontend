@@ -9,7 +9,7 @@ const Header = () => {
   const navItem = [
     { icon: <MdWork/>, title: "Share work"},
     { icon: <BsSearch/>, title: "Search help"},
-    { icon: <BiCategoryAlt/>, title: "Categories"},
+    { icon: <BiCategoryAlt/>, title: "Job categories"},
   ]
 
   const articleItem = [
@@ -23,8 +23,8 @@ const Header = () => {
     </>,
     <>
       <h1>Search your needs</h1>
-      <form>
-        <input type="text" name="searchKeyword"></input>
+      <form className="home_header_form">
+        <input type="text" name="searchKeyword" placeHolder="...Search work"></input>
         <button><BsSearch/></button>
       </form>
     </>,
@@ -38,7 +38,7 @@ const Header = () => {
     const displayArticle = e.currentTarget.id;
     setNav(displayArticle);
   }
-  
+
   return (
     <>
       <section id="home_header_section">

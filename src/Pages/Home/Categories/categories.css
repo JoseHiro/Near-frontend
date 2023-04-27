@@ -1,0 +1,18 @@
+#body_category_container{
+  text-align: center;
+}
+
+.body_category_cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin: 5% 8%;
+}
+
+
+.body_category_cards article{
+  background: var(--background-white);
+  box-shadow: var(--box-shadow);
+  height: 400px;
+
+}

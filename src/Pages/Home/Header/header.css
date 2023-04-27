@@ -9,7 +9,8 @@ section {
 .home_header_nav_container {
   /* transform: translate(40%); */
   margin-left: 10%;
-  width: 600px;
+  margin-top: 10%;
+  width: 700px;
   display:flex;
   /* align-items: center; */
   /* gap: 20px; */
@@ -21,7 +22,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  /* border-right: 3px solid #eee; */
+  border-right: 3px solid #eee;
 }
 
 .home_header_nav_container .header_nav:hover {
@@ -33,7 +34,7 @@ section {
   padding: 25px;
 }
 
-article{
+.home_header_nav_container article{
   width: 100%;
   text-align: center;
   margin: auto auto;
@@ -52,7 +53,7 @@ article form button {
   float: right;
 }
 
-form {
+.home_header_form {
   width: 90% !important;
   /* display: inline-grid !important; */
 }
