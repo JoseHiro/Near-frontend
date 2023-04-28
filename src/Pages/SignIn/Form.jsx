@@ -4,12 +4,12 @@ import './form.css'
 
 function Form(){
   const [formValue, setFormValue] = useState({ name: "", email: "", password:""})
+  const nav = useNavigate();
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
     setFormValue({...formValue, [name]: value});
   }
-  const nav = useNavigate();
 
   const handleSubmit = (e) =>{
     e.preventDefault();

@@ -12,4 +12,5 @@
   box-shadow: var(--box-shadow);
   margin: 5% 10% 0 10%;
   height: 200px;
+  border-radius: 15px;
 }

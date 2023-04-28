@@ -1,0 +1,12 @@
+#post_job_container{
+  text-align: center;
+}
+
+form {
+  margin-top: 20px;
+  width:60%;
+}
+
+form textarea {
+  height: 70px;
+}
