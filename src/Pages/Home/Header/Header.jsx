@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 import {MdWork} from 'react-icons/md';
 import {BsSearch} from 'react-icons/bs';
 import {BiCategoryAlt} from 'react-icons/bi';
@@ -17,8 +18,12 @@ const Header = () => {
       <h1>Provide your skills to public</h1>
       <h3>Earn some income</h3>
       <div>
-        <button>Contribute</button>
-        <button>See others</button>
+        <button>
+          <Link to='/user/post-job'>Contribute</Link>
+        </button>
+        <button>
+          <Link to='/user/post-job'>See others</Link>
+        </button>
       </div>
     </>,
     <>

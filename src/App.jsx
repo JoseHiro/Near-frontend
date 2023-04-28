@@ -8,6 +8,7 @@ import Form from './Pages/SignIn/Form'
 import Login from './Pages/Login/Login'
 import Edit from './Pages/User/Edit/Edit';
 import Delete from './Pages/User/Delete/Delete';
+import PostJob from './Pages/User/Post-Job/Post-job';
 import './index.css';
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
       <Route path={`/user/edit/:userId`} element={<Edit userId={loginState.userId}/>} ></Route>
       <Route path={`/user/payment/:userId`} element={<User/>}></Route>
       <Route path={`/user/delete/:userId`} element={<Delete signOut={handleSignOut}/>}></Route>
+      <Route path={`/user/post-job`} element={<PostJob/>}></Route>
     </Routes>
     <Footer/>
   </>
