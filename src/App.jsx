@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import User from './Pages/User/User';
+import Posts from './Pages/Posts/Posts';
+import Post from './Pages/Posts/Post/Post';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Form from './Pages/SignIn/Form'
@@ -60,6 +62,12 @@ function App() {
       <Route path={`/`} element={<Home/>}></Route>
       <Route path={`/signin`} element={<Form/>}></Route>
       <Route path={`/login`} element={<Login login={handleUpdateLogin}/>}></Route>
+
+      <Route path={`/posts`} element={<Posts/>}></Route>
+      <Route path={`/post/:postId`} element={<Post/>}></Route>
+      <Route path={`/post/edit/:postId`} element={<Post/>}></Route>
+
+
       <Route path={`/user/:userId`} element={<User userId={loginState.userId}/>}></Route>
       <Route path={`/user/edit/:userId`} element={<Edit userId={loginState.userId}/>} ></Route>
       <Route path={`/user/payment/:userId`} element={<User/>}></Route>

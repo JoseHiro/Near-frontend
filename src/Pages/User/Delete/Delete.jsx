@@ -2,7 +2,6 @@ import React from "react";
 import { useParams, useNavigate} from "react-router-dom";
 import './delete.css';
 
-
 const Delete = (props) => {
   const {userId} = useParams();
   const navigate = useNavigate();

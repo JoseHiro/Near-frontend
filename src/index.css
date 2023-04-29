@@ -32,13 +32,16 @@ form {
   box-shadow: var(--box-shadow);
 }
 
-input, textarea{
+input, textarea, select{
   width: 70%;
   padding: 0.8rem;
   border-radius: 0.5rem;
   background: transparent;
   border: 2px solid grey;
   margin: 0 auto;
+  /* -moz-box-sizing: border-box; */
+  /* -webkit-box-sizing: border-box; */
+  box-sizing: border-box;
 }
 
 form button {
@@ -59,4 +62,15 @@ button {
   border: none;
   border-radius: 15px;
   margin: 0px 5px 5px 0;
+}
+
+
+
+@media screen and (max-width: 1024px){
+
+}
+
+
+@media screen and (max-width: 600px){
+
 }
