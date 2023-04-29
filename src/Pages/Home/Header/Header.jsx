@@ -22,7 +22,7 @@ const Header = () => {
           <Link to='/user/post-job'>Contribute</Link>
         </button>
         <button>
-          <Link to='/user/post-job'>See others</Link>
+          <Link to='/posts'>See others</Link>
         </button>
       </div>
     </>,

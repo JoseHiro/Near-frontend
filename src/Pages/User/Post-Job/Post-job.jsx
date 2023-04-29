@@ -4,7 +4,6 @@ import './post-job.css';
 const PostJob = () => {
 
   const [input, setInput] = useState({title: '', imageUrl: '', category: '', description: '', price : ''})
-  console.log(input);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +39,14 @@ const PostJob = () => {
         <label>Job title</label>
         <input type="text" name="title" onChange={handleChange} value={input.title}></input>
         <label>Category</label>
-        <input type="text" name="category" onChange={handleChange} value={input.category}></input>
+        <select name="category" onChange={handleChange} value={input.category}>
+          <option value="">- Choose</option>
+          <option value="Art">Art</option>
+          <option value="Repair">Repair</option>
+          <option value="Cloth">Cloth</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Music">Music</option>
+        </select>
         <label>Image URL</label>
         <input type="text" name="imageUrl" onChange={handleChange} value={input.imageUrl}></input>
         <label>Descripition</label>

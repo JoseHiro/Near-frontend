@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import './edit.css';
 
@@ -9,7 +9,6 @@ const Edit = (props) =>{
    useEffect(() =>{
       fetch('http://localhost:8080/user/edit/' + userId)
       .then(res =>{
-        // console.log(res);
         return res.json();
       })
       .then(result =>{
@@ -38,7 +37,6 @@ const Edit = (props) =>{
     .then(response =>{
       return response.json();
     })
-
   }
 
   return (

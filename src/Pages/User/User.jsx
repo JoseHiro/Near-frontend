@@ -9,9 +9,7 @@ const User = () =>{
   const editUrl = '/user/edit/' + userId;
   const paymentUrl = '/user/payment/' + userId;
   const deleteUrl = '/user/delete/' + userId;
-
-
-
+  
   return (
     <section>
       <h1>User Settings</h1>

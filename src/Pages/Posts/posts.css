@@ -1,0 +1,33 @@
+#posts_container {
+
+}
+
+.posts {
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 20px;
+  margin: 0 30px;
+}
+
+.posts a{
+  color: black;
+}
+
+#posts_container article {
+  background: var(--background-white);
+  box-shadow: var(--box-shadow);
+  border-radius: 15px;
+}
+
+#posts_container article img{
+  border-radius: 15px 15px 0 0;
+  display: block;
+  width: 100%;
+}
+
+.post_info {
+  padding-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
