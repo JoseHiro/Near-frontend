@@ -1,3 +1,20 @@
-/* section a {
-  margin: 10px !important;
-} */
+
+#user_container {
+  height: 80vh;
+  text-align: center;
+}
+
+.user_container_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user_container_navbox {
+  margin-top: 10px;
+  height: 80%;
+}
+
+.user_container_navbox a{
+  color: black;
+}

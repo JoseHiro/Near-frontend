@@ -1,20 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { AuthContext } from '../../Context/auth-context';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = (props) =>{
   const handleSignOut = (e) =>{
     e.preventDefault();
-    props.signOut();
+    auth.logout();
   }
 
-  const userUrl = '/user/' + props.userId;
+  const auth = useContext(AuthContext);
+
+  const userUrl = '/user/' + auth.userId;
 
   return (
     <div id='navbar'>
       <nav className="nav_links">
         <Link className="nav_title" to="/">Near</Link>
-        { props.isLoggedIn?
+        { auth.isLoggedIn?
           <>
             <Link to="/signout" onClick={handleSignOut}>Signout</Link>
             <Link to={userUrl}>User</Link>

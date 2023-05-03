@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {MdWork} from 'react-icons/md';
 import {BsSearch} from 'react-icons/bs';
 import {BiCategoryAlt} from 'react-icons/bi';
+import Navbox from "../../../Components/Navbox/Navbox";
 import './header.css';
 
 const Header = () => {
@@ -29,7 +30,7 @@ const Header = () => {
     <>
       <h1>Search your needs</h1>
       <form className="home_header_form">
-        <input type="text" name="searchKeyword" placeHolder="...Search work"></input>
+        <input type="text" name="searchKeyword" placeholder="...Search work"/>
         <button><BsSearch/></button>
       </form>
     </>,
@@ -47,8 +48,10 @@ const Header = () => {
   return (
     <>
       <section id="home_header_section">
+        <Navbox divName={"home_header_nav_container"} navClass={"header_nav"} navItem={navItem} articleItem={articleItem}/>
       <div className="home_header_nav_container">
-        <nav>
+
+        {/* <nav>
           {navItem.map((element, index) => {
             return(
             <div onClick={handleClick} key={index} id={index} style={{cursor:'pointer'}} className="header_nav">
@@ -59,7 +62,7 @@ const Header = () => {
         </nav>
         <article>
           {articleItem[pickedNav]}
-        </article>
+        </article> */}
       </div>
     </section>
     </>
