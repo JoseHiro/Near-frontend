@@ -19,7 +19,7 @@ const Post = () => {
           <h1>{post.title}</h1>
           <p>Poster</p>
         </div>
-        <Link to="/">Edit</Link>
+        <Link to={'/post/edit/' + postId}>Edit</Link>
       </div>
       <div className="post_content">
         <img alt="" src={post.imageUrl}></img>

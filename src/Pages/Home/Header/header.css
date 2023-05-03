@@ -11,7 +11,7 @@ section {
   margin-left: 10%;
   margin-top: 10%;
   width: 700px;
-  display:flex;
+  display: flex;
   /* align-items: center; */
   /* gap: 20px; */
   background: var(--background-dark-white);

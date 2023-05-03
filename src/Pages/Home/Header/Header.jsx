@@ -29,7 +29,7 @@ const Header = () => {
     <>
       <h1>Search your needs</h1>
       <form className="home_header_form">
-        <input type="text" name="searchKeyword" placeHolder="...Search work"></input>
+        <input type="text" name="searchKeyword" placeholder="...Search work"></input>
         <button><BsSearch/></button>
       </form>
     </>,
