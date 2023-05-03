@@ -10,15 +10,30 @@ const User = () =>{
   const paymentUrl = '/user/payment/' + userId;
   const deleteUrl = '/user/delete/' + userId;
 
+  const navItem = [
+    { title: "User informatioin"},
+    { title: "Payments"},
+    { title: "Delete"},
+  ]
+
+  const articleItem = [
+    <>
+      <Link to={editUrl}>Edit</Link>
+    </>,
+    <>
+      <Link to={paymentUrl}>Payment</Link>
+    </>,
+    <>
+     <Link to={deleteUrl}>Delete</Link>
+    </>
+  ]
+
   return (
     <section id="user_container">
       <h1>User Settings</h1>
       <div>
         <nav className='user_container_actions'>
-        <Navbox/>
-          <Link to={editUrl}>Edit</Link>
-          <Link to={paymentUrl}>Payment</Link>
-          <Link to={deleteUrl}>Delete</Link>
+        <Navbox artcleItem={articleItem}/>
         </nav>
       </div>
       <div>

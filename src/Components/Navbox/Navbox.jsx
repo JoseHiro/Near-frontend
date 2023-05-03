@@ -6,24 +6,12 @@ import {MdWork} from 'react-icons/md';
 import {BsSearch} from 'react-icons/bs';
 import {BiCategoryAlt} from 'react-icons/bi';
 
-const Navbox = () =>{
+const Navbox = (props) =>{
   const [pickedNav, setNav] = useState(0);
   const navItem = [
     { title: "User informatioin"},
-    { title: "Payements"},
+    { title: "Payments"},
     { title: "Delete"},
-  ]
-
-  const articleItem = [
-    <>
-      <h1>Page 1</h1>
-    </>,
-    <>
-      <h1>Page 2</h1>
-    </>,
-    <>
-      <h1>Page 3</h1>
-    </>
   ]
 
   const handleClick = (e) =>{
@@ -44,7 +32,7 @@ const Navbox = () =>{
           })}
         </nav>
         <article>
-          {articleItem[pickedNav]}
+          {props.articleItem}
         </article>
       </div>
     </>
