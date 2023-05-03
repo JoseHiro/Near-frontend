@@ -1,0 +1,10 @@
+.popup_message {
+  margin: 0 auto;
+  width: 30%;
+}
+
+.popup_message h3{
+  border: 2px solid red;
+  padding: 10px;
+  color: red;
+}
