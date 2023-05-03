@@ -44,6 +44,10 @@ input, textarea, select{
   box-sizing: border-box;
 }
 
+input.error {
+  border: 2px solid red;
+}
+
 form button {
   margin: 0 auto;
 }

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { getAuthToken } from '../../../Auth/auth';
 import './edit.css';
 
 const Edit = (props) =>{
@@ -23,10 +24,12 @@ const Edit = (props) =>{
 
   const handleEditUser= (e) =>{
     e.preventDefault();
+    const token = getAuthToken();
     fetch('http://localhost:8080/user/edit/' + userId, {
-      method: "POST",
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
       },
       body: JSON.stringify({
         name: userData.name,

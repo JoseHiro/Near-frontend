@@ -1,3 +1,9 @@
-/* section a {
-  margin: 10px !important;
-} */
+#user_container {
+ text-align: center;
+}
+
+.user_container_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
