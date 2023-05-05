@@ -1,20 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { getAuthToken } from '../../../Auth/auth';
+import PopUpMessage from '../../../Components/Popup-message/Popup-message';
 import './edit.css';
 
 const Edit = (props) =>{
   const [userData, setUserData] = useState({name: '', email: '', password: ''});
+  const [error, setError] = useState('');
+  const [emptyFields, setEmptyFields] = useState([]);
+  const [displayError, setDisplayError] = useState(false);
   const {userId} = useParams();
 
    useEffect(() =>{
-      fetch('http://localhost:8080/user/edit/' + userId)
-      .then(res =>{
-        return res.json();
-      })
-      .then(result =>{
-        setUserData({name: result.name, email: result.email, password: result.password})
-      })
+    const fetchData = async () =>{
+      const response = await fetch('http://localhost:8080/user/edit/' + userId);
+      const resData = await response.json();
+      setUserData({name: resData.name, email: resData.email, password: resData.password})
+    }
+    fetchData();
   }, [])
 
   const handleInput = (e) =>{
@@ -22,10 +25,10 @@ const Edit = (props) =>{
     setUserData(preValue => ({...preValue, [name]: value }))
   }
 
-  const handleEditUser= (e) =>{
+  const handleEditUser = async(e) =>{
     e.preventDefault();
     const token = getAuthToken();
-    fetch('http://localhost:8080/user/edit/' + userId, {
+    const response = await fetch('http://localhost:8080/user/edit/' + userId, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
@@ -37,20 +40,56 @@ const Edit = (props) =>{
         password: userData.password
       })
     })
-    .then(response =>{
-      return response.json();
-    })
+
+    const resData = await response.json();
+    try {
+      if(!response.ok){
+        setError(resData.message);
+        console.log(resData.message);
+        setDisplayError(true);
+        if(resData.emptyFields){
+          console.log('empyu');
+          setEmptyFields(resData.emptyFields);
+        }
+        throw new Error(resData.message);
+      }
+      setUserData({name: '', email: '', password: ''});
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <section>
+      {(displayError) && <PopUpMessage message={error}/>}
       <form onSubmit={handleEditUser}>
         <label>Name</label>
-        <input type="text" name="name" value={userData.name} onChange={handleInput}></input>
+        <input
+          type="text"
+          name="name"
+          value={userData.name}
+          onChange={handleInput}
+          className={emptyFields.includes('name')? 'error' : ''}
+        />
+
         <label>Email</label>
-        <input type="email" name="email" value={userData.email} onChange={handleInput}></input>
+        <input
+          type="email"
+          name="email"
+          value={userData.email}
+          onChange={handleInput}
+          className={emptyFields.includes('email')? 'error' : ''}
+        />
+
         <label>Password</label>
-        <input type="password" name="password" value={userData.password} onChange={handleInput}></input>
+        <input
+          type="password"
+          name="password"
+          value={userData.password}
+          onChange={handleInput}
+          className={emptyFields.includes('password')? 'error' : ''}
+        />
         <button type="submit">Submit</button>
       </form>
     </section>

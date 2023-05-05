@@ -6,7 +6,7 @@ import PopUpMessage from '../../Components/Popup-message/Popup-message';
 function Login(){
   const [input, setInput] = useState({email: '', password:''})
   const [error, setError] = useState('');
-  const [emptyFields, setEmptyFields] = useState([]);
+  const [errorFields, setErrorFields] = useState([]);
   const [displayError, setDisplayError] = useState(false);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
@@ -29,10 +29,10 @@ function Login(){
 
     try {
       if(!response.ok){
-        if(resData.emptyFields){
-          setEmptyFields(resData.emptyFields);
+        if(resData.errorFields){
+          setErrorFields(resData.errorFields);
         }else{
-          setEmptyFields([]);
+          setErrorFields([]);
         }
         throw new Error('Validation failed.');
       }
@@ -44,8 +44,8 @@ function Login(){
       localStorage.setItem('expiryDate', expiryDate.toISOString());
       await auth.login();
       navigate('/');
-      setInput({email: '', password: ''})
-      setEmptyFields([]);
+      setInput({email: '', password: ''});
+      setErrorFields([]);
 
     } catch(error){
       setError(resData.message);
@@ -60,11 +60,11 @@ function Login(){
       <form onSubmit={handlePostLogin}>
         <label>Email</label>
         <input
-          type="email"
+          type="text"
           name="email"
           value={input.email}
           onChange={handleChange}
-          className={emptyFields.includes('email')? 'error' : ''}
+          className={errorFields.includes('email')? 'error' : ''}
         />
 
         <label>Password</label>
@@ -73,7 +73,7 @@ function Login(){
           name="password"
           value={input.password}
           onChange={handleChange}
-          className={emptyFields.includes('password')? 'error' : ''}
+          className={errorFields.includes('password')? 'error' : ''}
         />
         <button className="" type="submit">Submit</button>
       </form>

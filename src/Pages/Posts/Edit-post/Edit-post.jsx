@@ -31,9 +31,9 @@ const EditJob = () => {
 },[])
 
 
-  const handelEditInput = (e) => {
+  const handelEditInput = async (e) => {
     e.preventDefault();
-    fetch('http://localhost:8080/post/edit/' + postId,{
+    const response = await fetch('http://localhost:8080/post/edit/' + postId,{
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -45,10 +45,8 @@ const EditJob = () => {
         description: input.description,
         price: input.price
       })
-    }).then(response =>{
-      console.log(response);
-      return response.json();
     })
+    const resData = await response.json();
   }
 
 
