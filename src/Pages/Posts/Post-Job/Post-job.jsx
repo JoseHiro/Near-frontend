@@ -3,16 +3,19 @@ import './post-job.css';
 
 const PostJob = () => {
 
-  const [input, setInput] = useState({title: '', imageUrl: '', category: '', description: '', price : ''})
+  const [input, setInput] = useState({ title: '', imageUrl: '', category: '', description: '', price : '' });
+  const [error, setError] = useState('');
+  const [emptyFields, setEmptyFields] = useState([]);
+  const [displayError, setDisplayError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput({...input, [name]: value})
   }
 
-  const handelInput = (e) => {
+  const handelInput = async(e) => {
     e.preventDefault();
-    fetch('http://localhost:8080/user/post-work/64444fa9459136cdef391833',{
+    const response = await fetch('http://localhost:8080/user/post-work/64444fa9459136cdef391833',{
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -24,10 +27,19 @@ const PostJob = () => {
         description: input.description,
         price: input.price
       })
-    }).then(response =>{
-      console.log(response);
-      return response.json();
     })
+
+    const resData = await response.json();
+    if(!response.ok){
+      setError(resData.message);
+      setDisplayError(true);
+      if(resData.emptyFields){
+        setEmptyFields(resData.emptyFields);
+      }
+    }
+
+    setError('');
+    setDisplayError(false);
     setInput({title: '', imageUrl: '', category: '', description: '', price : ''});
   }
 
