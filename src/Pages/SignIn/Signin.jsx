@@ -1,39 +1,28 @@
-import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-import { getAuthToken } from '../../../Auth/auth';
-import PopUpMessage from '../../../Components/Popup-message/Popup-message';
-import Input from '../../../Components/Input/Input';
-import './edit.css';
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+import Input from '../../Components/Input/Input';
+import PopUpMessage from '../../Components/Popup-message/Popup-message';
+import './signin.css';
 
-const Edit = (props) =>{
-  const [input, setinput] = useState({name: '', email: '', password: ''});
+function Form(){
+  const [input, setInput] = useState({ name: "", email: "", password:""});
   const [error, setError] = useState('');
   const [errorFields, setErrorFields] = useState([]);
   const [displayError, setDisplayError] = useState(false);
-  const {userId} = useParams();
-
-   useEffect(() =>{
-    const fetchData = async () =>{
-      const response = await fetch('http://localhost:8080/user/edit/' + userId);
-      const resData = await response.json();
-      setinput(resData.user)
-    }
-    fetchData();
-  },[])
+  const nav = useNavigate();
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
-    setinput(preValue => ({...preValue, [name]: value }))
+    setInput({...input, [name]: value});
   }
 
-  const handleEditUser = async(e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault();
-    const token = getAuthToken();
-    const response = await fetch('http://localhost:8080/user/edit/' + userId, {
-      method: "PUT",
+
+    const response = await fetch("http://localhost:8080/signin", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name: input.name,
@@ -41,25 +30,27 @@ const Edit = (props) =>{
         password: input.password
       })
     })
-
+    console.log(response);
     const resData = await response.json();
+
     try {
       if(!response.ok){
         setError(resData.message);
-        console.log(resData.message);
-        setDisplayError(true);
         if(resData.errorFields){
-          console.log('empyu');
           setErrorFields(resData.errorFields);
         }
-        throw new Error(resData.message);
+        setDisplayError(true);
+        throw new Error(resData.message)
       }
-      setinput({name: '', email: '', password: ''});
-
+      setDisplayError(false);
+      setErrorFields([])
+      setInput({name: "", email: "", password:""});
+      nav('/login');
     } catch (error) {
       console.log(error);
     }
   }
+
 
   const inputField = [
     {
@@ -78,9 +69,10 @@ const Edit = (props) =>{
       type: "text",
       name: "email",
       value: input.email,
-      errorMessage: "Use a valid email",
       className: errorFields.includes('email')? 'error' : '',
-      pattern: "^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$",
+      errorMessage: "Password should be 8-20 characters that includes at least one 1 letter, 1 number and 1 special character",
+      // pattern: `^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^*]{8,20}$`,
+      pattern: `^[a-zA-Z0-9!@#$%^*]{6,20}$`,
     },
     {
       id:3,
@@ -95,12 +87,10 @@ const Edit = (props) =>{
     }
   ]
 
-
-
-  return (
+  return(
     <section>
       {(displayError) && <PopUpMessage message={error}/>}
-      <form onSubmit={handleEditUser}>
+      <form className="container" onSubmit={handleSubmit}>
         { inputField.map(inputData => (
           <Input
             key={inputData.id}
@@ -108,10 +98,10 @@ const Edit = (props) =>{
             onChange={handleChange}
           />)
         )}
-        <button type="submit">Submit</button>
+        <button className="" type="submit">Submit</button>
       </form>
     </section>
   )
 }
 
-export default Edit;
+export default Form;

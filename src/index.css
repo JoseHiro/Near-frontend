@@ -64,9 +64,11 @@ button {
   margin: 0px 5px 5px 0;
 }
 
-input.error {
+input.error, select.error{
   border: 2px solid red;
 }
+
+
 
 
 @media screen and (max-width: 1024px){

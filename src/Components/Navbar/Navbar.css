@@ -1,6 +1,6 @@
 #navbar {
   background-color: white !important;
-  height: 40px;
+  height: 45px;
 }
 
 .nav_links {
@@ -15,6 +15,13 @@
   font-size: 20px;
   color: black;
 }
+
+.nav_links a:first-child{
+  margin-left: 20px;
+  font-size: 40px !important;
+}
+
+
 
 .nav_title {
   font-size: 30px !important;

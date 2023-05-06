@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
+import Input from '../../../Components/Input/Input';
+import PopUpMessage from '../../../Components/Popup-message/Popup-message';
 import './post-job.css';
 
 const PostJob = () => {
 
   const [input, setInput] = useState({ title: '', imageUrl: '', category: '', description: '', price : '' });
   const [error, setError] = useState('');
-  const [emptyFields, setEmptyFields] = useState([]);
+  const [errorFields, setErrorFields] = useState([]);
   const [displayError, setDisplayError] = useState(false);
 
   const handleChange = (e) => {
@@ -33,38 +35,88 @@ const PostJob = () => {
     if(!response.ok){
       setError(resData.message);
       setDisplayError(true);
-      if(resData.emptyFields){
-        setEmptyFields(resData.emptyFields);
+      console.log(resData.errorFields);
+      if(resData.errorFields){
+        console.log("hello");
+        setErrorFields(resData.errorFields);
       }
+    }else{
+      setError('');
+      setDisplayError(false);
+      setInput({title: '', imageUrl: '', category: '', description: '', price : ''});
     }
 
-    setError('');
-    setDisplayError(false);
-    setInput({title: '', imageUrl: '', category: '', description: '', price : ''});
   }
 
+
+  const inputField = [
+    {
+      id: 1,
+      label: 'Job title',
+      type: "text",
+      name: "title",
+      value: input.title,
+      errorMessage: "Please provide a title ",
+      className: errorFields.includes('title')? 'error' : '',
+      // pattern: "^[A-Za-z]{3,20}",
+    },
+    {
+      id: 2,
+      label: 'ImageUrl',
+      type: "text",
+      name: "imadgeUrl",
+      value: input.imageUrl,
+      errorMessage: "Please valid image URL",
+      className: errorFields.includes('imageUrl')? 'error' : '',
+      // pattern: "^[A-Za-z]{3,20}",
+    },
+    {
+      id: 3,
+      label: 'Work Description',
+      type: "text",
+      name: "description",
+      value: input.description,
+      errorMessage: "Provide a descprition with more than 100 letters",
+      className: errorFields.includes('description')? 'error' : '',
+      // pattern: "^[A-Za-z0-9]{100,200}$",
+    },
+    {
+      id: 4,
+      label: 'Price',
+      type: "number",
+      name: "price",
+      value: input.password,
+      className: errorFields.includes('price')? 'error' : '',
+      errorMessage: "The price needs to more than 2",
+      // pattern: `^[0-9]{2,10}$`,
+    }
+  ]
 
   return (
     <section id="post_job_container">
       <h2>Post your talent to save life</h2>
+      {(displayError )&& <PopUpMessage message={error}/> }
       <form onSubmit={handelInput}>
-        <label>Job title</label>
-        <input type="text" name="title" onChange={handleChange} value={input.title}></input>
+
         <label>Category</label>
-        <select name="category" onChange={handleChange} value={input.category}>
+        <select name="category" onChange={handleChange} value={input.category} className={errorFields.includes('imageUrl')? 'error' : ''} >
           <option value="">- Choose</option>
           <option value="Art">Art</option>
           <option value="Repair">Repair</option>
           <option value="Cloth">Cloth</option>
           <option value="Beauty">Beauty</option>
           <option value="Music">Music</option>
+          <option value="Music">Education</option>
+          <option value="Music">DIY</option>
         </select>
-        <label>Image URL</label>
-        <input type="text" name="imageUrl" onChange={handleChange} value={input.imageUrl}></input>
-        <label>Descripition</label>
-        <textarea type="text" name="description" onChange={handleChange} value={input.description}></textarea>
-        <label>Price</label>
-        <input type="number" name="price" onChange={handleChange} value={input.price}></input>
+
+        { inputField.map(inputData => (
+          <Input
+            key={inputData.id}
+            {...inputData}
+            onChange={handleChange}
+          />)
+        )}
         <button type="submit">Submit</button>
       </form>
     </section>

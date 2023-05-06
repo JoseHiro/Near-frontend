@@ -9,7 +9,7 @@ import Post from './Pages/Posts/Post/Post';
 import EditPost from './Pages/Posts/Edit-post/Edit-post';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-import Form from './Pages/SignIn/Form'
+import Signin from './Pages/SignIn/Signin'
 import Login from './Pages/Login/Login'
 import Edit from './Pages/User/Edit/Edit';
 import Delete from './Pages/User/Delete/Delete';
@@ -76,7 +76,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path={`/`} element={<Home/>}></Route>
-        <Route path={`/signin`} element={<Form/>}></Route>
+        <Route path={`/signin`} element={<Signin/>}></Route>
         <Route path={`/login`} element={<Login login={handleUpdateLogin}/>}></Route>
 
         <Route path={`/posts`} element={<Posts/>}></Route>

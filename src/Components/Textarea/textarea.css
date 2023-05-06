@@ -1,0 +1,9 @@
+form span {
+  font-size: 15px;
+  color: red;
+  display: none;
+}
+
+textarea:invalid + span{
+  display: block;
+}
