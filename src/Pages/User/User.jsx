@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useParams} from 'react-router-dom';
 import Navbox from '../../Components/Navbox/Navbox';
+import EditProfile from './Edit-Profile/Edit-Profile';
 import Edit from './Edit/Edit'
 import './User.css'
 
 const User = () =>{
-
   const {userId} = useParams();
 
   const navItem = [
@@ -15,12 +15,13 @@ const User = () =>{
     { title: "Delete"},
   ]
 
-  const editUrl = '/user/edit/' + userId;
-  const paymentUrl = '/user/payment/' + userId;
   const deleteUrl = '/user/delete/' + userId;
 
   const articleItem = [
-    <><h1>Profile</h1></>,
+    <>
+      <img alt='' src='https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg'></img>
+      <EditProfile/>
+    </>,
     <><Edit/></>,
     <h1>Payments</h1>,
     <Link to={deleteUrl}>Delete</Link>

@@ -6,6 +6,8 @@ const Post = () => {
   const [post, setPost] = useState([]);
   const {postId} = useParams();
 
+  console.log(post);
+
   useEffect(() =>{
     fetch('http://localhost:8080/post/' + postId)
     .then(response =>{ return response.json();})
@@ -17,7 +19,7 @@ const Post = () => {
       <div className="post_head">
         <div>
           <h1>{post.title}</h1>
-          <p>Poster</p>
+          <Link><p>{post.poster}</p></Link>
         </div>
         <Link to={'/post/edit/' + postId}>Edit</Link>
       </div>
@@ -29,7 +31,7 @@ const Post = () => {
             <h3>★★★★★</h3>
           </div>
           <Link>Check Feedbacks</Link>
-          {/* <h3>{post.category}</h3> */}
+          <h3>{post.category}</h3>
           <div className="post_buttons">
             <button>Contact poster</button>
             <button>Reserve</button>

@@ -1,26 +1,17 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import Burger from '../Burger/Burger';
 import { AuthContext } from '../../Context/auth-context';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = (props) =>{
-  const [mobile, setMobile] = useState(false);
+const Navbar = () =>{
 
-
-  useEffect(() =>{
-    if(window.innerWidth < 700 ){
-      setMobile(true)
-    }
-  },[])
-
+  const auth = useContext(AuthContext);
 
   const handleSignOut = (e) =>{
     e.preventDefault();
     auth.logout();
   }
-
-  const auth = useContext(AuthContext);
 
   const userUrl = '/user/' + auth.userId;
 
@@ -32,25 +23,26 @@ const Navbar = (props) =>{
         </div>
         <div className="navbar_contents">
           <Link to="/signin">Near works</Link>
+          <Link to="/signin">Work for society</Link>
           <Link to="/signin">Near categories</Link>
           <Link to="/signin">How to use</Link>
         </div>
       </nav>
 
       <nav className="navbar_right">
-        { (auth.isLoggedIn && !mobile)?
+        { auth.isLoggedIn?
           <div className="navbar_contents">
             <Link to="/signout" onClick={handleSignOut}>Signout</Link>
             <Link to={userUrl}>User</Link>
-            <p>Hello User!</p>
+            <p>Hello {auth.userName}!</p>
           </div>
           :
           <div className="navbar_contents">
             <Link to="/signin">Signin</Link>
             <Link to="/login">Login</Link>
-            <Burger/>
           </div>
         }
+      <Burger/>
       </nav>
     </div>
   )

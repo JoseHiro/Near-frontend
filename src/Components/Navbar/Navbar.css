@@ -26,14 +26,13 @@
 
 .nav_title {
   font-size: 40px !important;
+  color: #68a063 !important;
 }
 
 .navbar_contents {
   display: flex;
   gap: 30px;
 }
-
-
 
 @media screen and (max-width: 1024px){
   #navbar {
@@ -44,5 +43,7 @@
 
 
 @media screen and (max-width: 600px){
-
+  .navbar_contents {
+    display: none;
+  }
 }

@@ -40,10 +40,14 @@ function Login(){
 
       localStorage.setItem('token', resData.token);
       localStorage.setItem('userId', resData.userId);
+      localStorage.setItem('userName', resData.userName);
+
       const remainingMilliseconds = 60 * 60 * 1000;
       const expiryDate = new Date( new Date().getTime() + remainingMilliseconds);
       localStorage.setItem('expiryDate', expiryDate.toISOString());
+
       await auth.login();
+
       navigate('/');
       setInput({email: '', password: ''});
       setErrorFields([]);

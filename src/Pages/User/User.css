@@ -1,6 +1,6 @@
 
 #user_container {
-  height: 80vh;
+  height: 100vh;
   text-align: center;
 }
 
@@ -12,7 +12,11 @@
 
 .user_container_navbox {
   margin-top: 10px;
-  height: 80%;
+  height: 90%;
+}
+
+.user_container_navbox img{
+  width: 20%;
 }
 
 .user_container_navbox a{
