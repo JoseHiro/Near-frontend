@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {FaBars} from 'react-icons/fa'
+// import {FaBars} from 'react-icons/fa'
+import {RxHamburgerMenu} from 'react-icons/rx'
 import {AiOutlineClose} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './Sidebardata';
@@ -12,7 +13,7 @@ function Burger() {
   return (
     <>
       <div className="burger_bars">
-        <FaBars onClick={showSidebar}/>
+        <RxHamburgerMenu onClick={showSidebar}/>
       </div>
       <nav className={sidebar ? 'nav_menu active' : 'nav_menu'}>
         <ul className='nav_menu_items'>

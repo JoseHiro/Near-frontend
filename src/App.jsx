@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthContext } from './Context/auth-context';
 import Home from './Pages/Home/Home';
 import User from './Pages/User/User';
+import ErrorPage from './Pages/ErrorPage/ErrorPage';
 
 import Posts from './Pages/Posts/Posts';
 import Post from './Pages/Posts/Post/Post';
@@ -21,21 +22,26 @@ function App() {
   // const [loginState, setLogin] = useState({token: null, userId: null})
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(false);
+  const [userName, setUserName] = useState(false);
   const navigate = useNavigate();
 
   const login = useCallback(() =>{
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+    const userName = localStorage.getItem('userName');
     setToken(token);
     setUserId(userId);
+    setUserName(userName);
   },[])
 
   const logout = useCallback(()=>{
     localStorage.removeItem('token');
     localStorage.removeItem('expiryDate');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
     setToken(null);
     setUserId(null);
+    setUserName(null);
     navigate('/');
   },[])
 
@@ -44,7 +50,7 @@ function App() {
     const expireDate = localStorage.getItem('expiryDate');
 
     if(!token || !expireDate){
-      //logout handler
+      logout();
       return;
     }
 
@@ -52,16 +58,14 @@ function App() {
       logout();
       return;
     }
-    const userId = localStorage.getItem('userId');
-    // setLogin({token: token, userId: userId});
   },[])
 
-  const handleUpdateLogin = () => {
-    const token = localStorage.getItem('token');
-    const expireDate = localStorage.getItem('expiryDate');
-    const userId = localStorage.getItem('userId');
-    // setLogin({token: token, userId: userId})
-  }
+  // const handleUpdateLogin = () => {
+  //   const token = localStorage.getItem('token');
+  //   const expireDate = localStorage.getItem('expiryDate');
+  //   const userId = localStorage.getItem('userId');
+  //   setLogin({token: token, userId: userId})
+  // }
 
   return (
   <>
@@ -70,6 +74,7 @@ function App() {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
+        userName: userName,
         login: login,
         logout: logout
         }}>
@@ -77,7 +82,7 @@ function App() {
       <Routes>
         <Route path={`/`} element={<Home/>}></Route>
         <Route path={`/signin`} element={<Signin/>}></Route>
-        <Route path={`/login`} element={<Login login={handleUpdateLogin}/>}></Route>
+        <Route path={`/login`} element={<Login/>}></Route>
 
         <Route path={`/posts`} element={<Posts/>}></Route>
         <Route path={`/post/:postId`} element={<Post/>}></Route>
@@ -88,6 +93,7 @@ function App() {
         <Route path={`/user/edit/:userId`} element={<Edit/>} ></Route>
         <Route path={`/user/payment/:userId`} element={<User/>}></Route>
         <Route path={`/user/delete/:userId`} element={<Delete/>}></Route>
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
       <Footer/>
     </AuthContext.Provider>
