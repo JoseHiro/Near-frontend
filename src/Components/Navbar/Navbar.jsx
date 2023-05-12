@@ -22,10 +22,10 @@ const Navbar = () =>{
           <Link className="nav_title" to="/">Near</Link>
         </div>
         <div className="navbar_contents">
-          <Link to="/signin">Near works</Link>
-          <Link to="/signin">Work for society</Link>
-          <Link to="/signin">Near categories</Link>
-          <Link to="/signin">How to use</Link>
+          <Link to="/posts">Near works</Link>
+          <Link to="/user/post-job">Work for society</Link>
+          {/* <Link to="/signin">Near categories</Link> */}
+          {/* <Link to="/signin">How to use</Link> */}
         </div>
       </nav>
 

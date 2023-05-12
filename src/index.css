@@ -12,7 +12,9 @@
   --background-dark-white: #F5F6F9;
   --background-white: white;
   --background-grey: black;
+  --green: #68a063;
 
+  --border-grey-color: rgba(0,0,0,0.2);
   --box-shadow:rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -39,8 +41,6 @@ input, textarea, select{
   background: transparent;
   border: 2px solid grey;
   margin: 0 auto;
-  /* -moz-box-sizing: border-box; */
-  /* -webkit-box-sizing: border-box; */
   box-sizing: border-box;
 }
 
@@ -67,8 +67,6 @@ button {
 input.error, select.error{
   border: 2px solid red;
 }
-
-
 
 
 @media screen and (max-width: 1024px){

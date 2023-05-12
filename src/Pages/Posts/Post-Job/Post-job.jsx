@@ -1,33 +1,41 @@
 import React, {useState} from 'react';
+
+import { getAuthToken } from '../../../Auth/auth';
 import Input from '../../../Components/Input/Input';
 import PopUpMessage from '../../../Components/Popup-message/Popup-message';
+import Geocode from '../../../Components/Geocode/Geocode';
 import './post-job.css';
 
 const PostJob = () => {
 
-  const [input, setInput] = useState({ title: '', imageUrl: '', category: '', description: '', price : '' });
+  const [input, setInput] = useState({ title: '', imageUrl: '', category: '', description: '', price : ''});
+  const [location, setLocation] = useState({ name: '', lat: '', lng: ''})
   const [error, setError] = useState('');
   const [errorFields, setErrorFields] = useState([]);
   const [displayError, setDisplayError] = useState(false);
+
+  console.log(location);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput({...input, [name]: value})
   }
-
   const handelInput = async(e) => {
     e.preventDefault();
+    const token = getAuthToken();
     const response = await fetch('http://localhost:8080/user/post-work/64444fa9459136cdef391833',{
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
       },
       body :JSON.stringify({
         title: input.title,
         category: input.category,
         imageUrl: input.imageUrl,
         description: input.description,
-        price: input.price
+        price: input.price,
+        location: location
       })
     })
 
@@ -43,11 +51,10 @@ const PostJob = () => {
     }else{
       setError('');
       setDisplayError(false);
+      setLocation({ name: '', lat: '', lng: ''});
       setInput({title: '', imageUrl: '', category: '', description: '', price : ''});
     }
-
   }
-
 
   const inputField = [
     {
@@ -56,6 +63,7 @@ const PostJob = () => {
       type: "text",
       name: "title",
       value: input.title,
+      placeholder: "Give a job title",
       errorMessage: "Please provide a title ",
       className: errorFields.includes('title')? 'error' : '',
       // pattern: "^[A-Za-z]{3,20}",
@@ -64,8 +72,9 @@ const PostJob = () => {
       id: 2,
       label: 'ImageUrl',
       type: "text",
-      name: "imadgeUrl",
+      name: "imageUrl",
       value: input.imageUrl,
+      placeholder: "Provide a image URL",
       errorMessage: "Please valid image URL",
       className: errorFields.includes('imageUrl')? 'error' : '',
       // pattern: "^[A-Za-z]{3,20}",
@@ -76,6 +85,7 @@ const PostJob = () => {
       type: "text",
       name: "description",
       value: input.description,
+      placeholder: "Describe about the job",
       errorMessage: "Provide a descprition with more than 100 letters",
       className: errorFields.includes('description')? 'error' : '',
       // pattern: "^[A-Za-z0-9]{100,200}$",
@@ -85,7 +95,8 @@ const PostJob = () => {
       label: 'Price',
       type: "number",
       name: "price",
-      value: input.password,
+      value: input.price,
+      placeholder: "Price",
       className: errorFields.includes('price')? 'error' : '',
       errorMessage: "The price needs to more than 2",
       // pattern: `^[0-9]{2,10}$`,
@@ -117,6 +128,9 @@ const PostJob = () => {
             onChange={handleChange}
           />)
         )}
+        <label>Location</label>
+        <Geocode location={location} setLocation={setLocation}/>
+
         <button type="submit">Submit</button>
       </form>
     </section>

@@ -1,0 +1,26 @@
+.map_container {
+  width: 400px;
+  height: 400px;
+}
+
+.geocode_partial_match {
+  border: 2px solid rgba(0,0,0,0.2);
+  border-radius: 15px;
+  width: 70%;
+}
+
+.geocode_partial_match li {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px;
+  color:#202124;
+  text-align: left;
+}
+
+.geocode_partial_match li:hover {
+  background: var(--background-dark-white);
+}
+
+.pin {
+  color: var(--green);
+}
