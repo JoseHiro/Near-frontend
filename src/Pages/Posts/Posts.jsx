@@ -25,10 +25,12 @@ const Posts = () =>{
               <div className="post_info">
                 <div className="post_price_star">
                   <h3>{post.title}</h3>
+                  <p>{post.category}</p>
+                </div>
+                <div className="post_price_star">
                   <h3>{post.price} $</h3>
                   <h4>★★★★★</h4>
                 </div>
-                  <p>{post.category}</p>
               </div>
             </article>
           </Link>

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { getAuthToken } from '../../../Auth/auth';
 import { useParams, Link } from 'react-router-dom';
 import './post.css';
 
@@ -6,10 +7,14 @@ const Post = () => {
   const [post, setPost] = useState([]);
   const {postId} = useParams();
 
-  console.log(post);
-
   useEffect(() =>{
-    fetch('http://localhost:8080/post/' + postId)
+    const token = getAuthToken();
+    console.log(token);
+    fetch('http://localhost:8080/post/' + postId, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
     .then(response =>{ return response.json();})
     .then(response =>{ setPost(response.post);})
   },[])

@@ -4,6 +4,7 @@ import { AuthContext } from './Context/auth-context';
 import Home from './Pages/Home/Home';
 import User from './Pages/User/User';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
+import Geocode from './Components/Geocode/Geocode';
 
 import Posts from './Pages/Posts/Posts';
 import Post from './Pages/Posts/Post/Post';
@@ -50,7 +51,7 @@ function App() {
     const expireDate = localStorage.getItem('expiryDate');
 
     if(!token || !expireDate){
-      logout();
+      // logout();
       return;
     }
 
@@ -83,6 +84,7 @@ function App() {
         <Route path={`/`} element={<Home/>}></Route>
         <Route path={`/signin`} element={<Signin/>}></Route>
         <Route path={`/login`} element={<Login/>}></Route>
+        <Route path={`/map`} element={<Geocode/>}></Route>
 
         <Route path={`/posts`} element={<Posts/>}></Route>
         <Route path={`/post/:postId`} element={<Post/>}></Route>
@@ -93,6 +95,7 @@ function App() {
         <Route path={`/user/edit/:userId`} element={<Edit/>} ></Route>
         <Route path={`/user/payment/:userId`} element={<User/>}></Route>
         <Route path={`/user/delete/:userId`} element={<Delete/>}></Route>
+
         <Route path='*' element={<ErrorPage/>}/>
       </Routes>
       <Footer/>

@@ -13,3 +13,7 @@ form textarea {
 
 form select {
 }
+
+.geocode_partial_match  {
+  margin: 0 auto;
+}
