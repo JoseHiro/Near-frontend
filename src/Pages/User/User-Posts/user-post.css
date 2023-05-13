@@ -1,0 +1,28 @@
+.user_post {
+  padding: 10px 10px;
+  margin-bottom: 20px !important;
+  border: 2px solid rgba(0,0,0,0.2);
+  display: flex;
+  width: 80% !important;
+  height: 100px;
+}
+
+.user_post_item {
+  display: flex;
+  flex-direction: column;
+}
+
+.user_post_item button a{
+  color: white;
+}
+
+.user_post div {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.user_post img {
+  height: 100%;
+  object-fit: cover;
+}

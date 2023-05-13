@@ -20,11 +20,34 @@ import './index.css';
 
 function App() {
 
+
+
   // const [loginState, setLogin] = useState({token: null, userId: null})
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(false);
   const [userName, setUserName] = useState(false);
   const navigate = useNavigate();
+
+  console.log(token);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const expireDate = localStorage.getItem('expiryDate');
+    const userId = localStorage.getItem('userName');
+
+    if(!token || !expireDate){
+      // logout();
+      return;
+    }
+
+    if(new Date(expireDate) <= new Date()){
+      logout();
+      return;
+    }
+
+    setToken(token);
+    setUserId(userId);
+  },[])
 
   const login = useCallback(() =>{
     const token = localStorage.getItem('token');
@@ -46,20 +69,6 @@ function App() {
     navigate('/');
   },[])
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const expireDate = localStorage.getItem('expiryDate');
-
-    if(!token || !expireDate){
-      // logout();
-      return;
-    }
-
-    if(new Date(expireDate) <= new Date()){
-      logout();
-      return;
-    }
-  },[])
 
   // const handleUpdateLogin = () => {
   //   const token = localStorage.getItem('token');
@@ -74,8 +83,8 @@ function App() {
       value={{
         isLoggedIn: !!token,
         token: token,
-        userId: userId,
-        userName: userName,
+        // userId: userId,
+        // userName: userName,
         login: login,
         logout: logout
         }}>
@@ -91,7 +100,7 @@ function App() {
         <Route path={`/post/edit/:postId`} element={<EditPost/>}></Route>
         <Route path={`/user/post-job`} element={<PostJob/>}></Route>
 
-        <Route path={`/user/:userId`} element={<User/>}></Route>
+        <Route path={`/user`} element={<User/>}></Route>
         <Route path={`/user/edit/:userId`} element={<Edit/>} ></Route>
         <Route path={`/user/payment/:userId`} element={<User/>}></Route>
         <Route path={`/user/delete/:userId`} element={<Delete/>}></Route>

@@ -43,9 +43,32 @@ const Post = () => {
           </div>
         </article>
       </div>
+
       <div className="post_detail">
+        <hr/>
+        <h3 className="post_description_title">About this job</h3>
         <p>{post.description}</p>
       </div>
+
+      <div className="post_reviews">
+        <hr/>
+        <h3 className="post_description_title">Reviews</h3>
+        <div className="post_reviews_container">
+          <article>
+            <h4>Review1</h4>
+            <p>"Lorem ipsum dolor sit amet, consecniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proid"</p>
+          </article>
+          <article>
+            <h4>Review1</h4>
+            <p>"Lorem ipsum dolor sit amet, consecniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proid"</p>
+          </article>
+          <article>
+            <h4>Review1</h4>
+            <p>"Lorem ipsum dolor sit amet, consecniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proid"</p>
+          </article>
+        </div>
+      </div>
+
     </section>
   )
 }

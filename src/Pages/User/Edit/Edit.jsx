@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { getAuthToken } from '../../../Auth/auth';
 import PopUpMessage from '../../../Components/Popup-message/Popup-message';
 import Input from '../../../Components/Input/Input';
@@ -10,11 +10,15 @@ const Edit = (props) =>{
   const [error, setError] = useState('');
   const [errorFields, setErrorFields] = useState([]);
   const [displayError, setDisplayError] = useState(false);
-  const {userId} = useParams();
 
    useEffect(() =>{
+    const token = getAuthToken();
     const fetchData = async () =>{
-      const response = await fetch('http://localhost:8080/user/edit/' + userId);
+      const response = await fetch('http://localhost:8080/user/edit', {
+        headers: {
+          "Authoization" : "Bearer " + token
+        }
+      });
       const resData = await response.json();
       setinput(resData.user)
     }
@@ -29,7 +33,7 @@ const Edit = (props) =>{
   const handleEditUser = async(e) =>{
     e.preventDefault();
     const token = getAuthToken();
-    const response = await fetch('http://localhost:8080/user/edit/' + userId, {
+    const response = await fetch('http://localhost:8080/user/edit', {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +53,6 @@ const Edit = (props) =>{
         console.log(resData.message);
         setDisplayError(true);
         if(resData.errorFields){
-          console.log('empyu');
           setErrorFields(resData.errorFields);
         }
         throw new Error(resData.message);

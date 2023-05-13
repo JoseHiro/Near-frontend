@@ -10,8 +10,6 @@ const EditProfile = () => {
   // const [errorFields, setErrorFields] = useState([]);
   // const [displayError, setDisplayError] = useState(false);
   const {userId} = useParams();
-  console.log(input);
-
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
