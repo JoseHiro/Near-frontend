@@ -13,8 +13,6 @@ const Navbar = () =>{
     auth.logout();
   }
 
-  const userUrl = '/user/' + auth.userId;
-
   return (
     <div id='navbar'>
       <nav className="navbar_left">
@@ -33,8 +31,8 @@ const Navbar = () =>{
         { auth.isLoggedIn?
           <div className="navbar_contents">
             <Link to="/signout" onClick={handleSignOut}>Signout</Link>
-            <Link to={userUrl}>User</Link>
-            <p>Hello {auth.userName}!</p>
+            <Link to="/user">User</Link>
+            <p>Hello!</p>
           </div>
           :
           <div className="navbar_contents">

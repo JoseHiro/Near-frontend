@@ -14,8 +14,6 @@ const PostJob = () => {
   const [errorFields, setErrorFields] = useState([]);
   const [displayError, setDisplayError] = useState(false);
 
-  console.log(location);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput({...input, [name]: value})
@@ -45,12 +43,12 @@ const PostJob = () => {
       setDisplayError(true);
       console.log(resData.errorFields);
       if(resData.errorFields){
-        console.log("hello");
         setErrorFields(resData.errorFields);
       }
     }else{
       setError('');
       setDisplayError(false);
+      setErrorFields([])
       setLocation({ name: '', lat: '', lng: ''});
       setInput({title: '', imageUrl: '', category: '', description: '', price : ''});
     }
@@ -113,12 +111,16 @@ const PostJob = () => {
         <select name="category" onChange={handleChange} value={input.category} className={errorFields.includes('imageUrl')? 'error' : ''} >
           <option value="">- Choose</option>
           <option value="Art">Art</option>
-          <option value="Repair">Repair</option>
-          <option value="Cloth">Cloth</option>
           <option value="Beauty">Beauty</option>
+          <option value="Cloth">Cloth</option>
+          <option value="Cooking">Cooking</option>
+          <option value="DIY">DIY</option>
+          <option value="Dance">Dance</option>
+          <option value="Education">Education</option>
+          <option value="Repair">Repair</option>
+          <option value="Sports">Sports</option>
           <option value="Music">Music</option>
-          <option value="Music">Education</option>
-          <option value="Music">DIY</option>
+          <option value="Other">Other</option>
         </select>
 
         { inputField.map(inputData => (

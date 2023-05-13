@@ -6,7 +6,7 @@
 .geocode_partial_match {
   border: 2px solid rgba(0,0,0,0.2);
   border-radius: 15px;
-  width: 70%;
+  width: 80%;
 }
 
 .geocode_partial_match li {

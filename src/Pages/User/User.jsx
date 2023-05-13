@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams} from 'react-router-dom';
 import Navbox from '../../Components/Navbox/Navbox';
+import UserPosts from './User-Posts/User-Posts';
 import EditProfile from './Edit-Profile/Edit-Profile';
 import Edit from './Edit/Edit'
 import './User.css'
@@ -11,6 +12,7 @@ const User = () =>{
   const navItem = [
     { title: "User profile"},
     { title: "User informatioin"},
+    { title: "Your posts"},
     { title: "Payments"},
     { title: "Delete"},
   ]
@@ -23,6 +25,10 @@ const User = () =>{
       <EditProfile/>
     </>,
     <><Edit/></>,
+    <div className="user_posts_container">
+      <h3>Posts</h3>
+      <UserPosts/>
+    </div>,
     <h1>Payments</h1>,
     <Link to={deleteUrl}>Delete</Link>
   ]
