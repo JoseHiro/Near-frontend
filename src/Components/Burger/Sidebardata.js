@@ -11,36 +11,48 @@ export const SidebarData = [
     title: 'Home',
     path: '/',
     icon: <AiFillHome/>,
-    cName: 'nav_text'
+    cName: 'sidenav_text'
   },
   {
-    title: 'SignIn',
+    title: 'User Settings',
+    path: '/user',
+    icon: <BsFillPersonPlusFill/>,
+    cName: 'sidenav_text sidenav_logged_in'
+  },
+  {
+    title: 'Signin',
     path: '/signin',
     icon: <BsFillPersonPlusFill/>,
-    cName: 'nav_text'
+    cName: 'sidenav_text sidenav_before_login'
   },
   {
-    title: 'LogIn',
+    title: 'Login',
     path: '/login',
     icon: <BiLogIn/>,
-    cName: 'nav_text'
+    cName: 'sidenav_text sidenav_before_login'
   },
   {
-    title: 'Work',
-    path: '/login',
+    title: 'Near works',
+    path: '/posts',
     icon: <BsPersonWorkspace/>,
-    cName: 'nav_text'
+    cName: 'sidenav_text'
   },
   {
     title: 'Categories',
     path: '/',
     icon: <BiCategoryAlt/>,
-    cName: 'nav_text'
+    cName: 'sidenav_text'
+  },
+  {
+    title: 'Signout',
+    path: '/signout',
+    icon: <BsFillPersonPlusFill/>,
+    cName: 'sidenav_text sidenav_logged_in'
   },
   {
     title: 'About',
     path: '/',
     icon: <HiInformationCircle/>,
-    cName: 'nav_text'
+    cName: 'sidenav_text'
   },
 ]

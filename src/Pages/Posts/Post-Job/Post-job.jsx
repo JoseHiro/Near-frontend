@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-
 import { getAuthToken } from '../../../Auth/auth';
 import Input from '../../../Components/Input/Input';
 import PopUpMessage from '../../../Components/Popup-message/Popup-message';
@@ -18,6 +17,7 @@ const PostJob = () => {
     const { name, value } = e.target;
     setInput({...input, [name]: value})
   }
+
   const handelInput = async(e) => {
     e.preventDefault();
     const token = getAuthToken();
@@ -110,17 +110,17 @@ const PostJob = () => {
         <label>Category</label>
         <select name="category" onChange={handleChange} value={input.category} className={errorFields.includes('imageUrl')? 'error' : ''} >
           <option value="">- Choose</option>
-          <option value="Art">Art</option>
-          <option value="Beauty">Beauty</option>
-          <option value="Cloth">Cloth</option>
-          <option value="Cooking">Cooking</option>
-          <option value="DIY">DIY</option>
-          <option value="Dance">Dance</option>
-          <option value="Education">Education</option>
-          <option value="Repair">Repair</option>
-          <option value="Sports">Sports</option>
-          <option value="Music">Music</option>
-          <option value="Other">Other</option>
+          <option value="art">Art</option>
+          <option value="beauty">Beauty</option>
+          <option value="cloth">Cloth</option>
+          <option value="cooking">Cooking</option>
+          <option value="dIY">DIY</option>
+          <option value="dance">Dance</option>
+          <option value="education">Education</option>
+          <option value="repair">Repair</option>
+          <option value="sports">Sports</option>
+          <option value="music">Music</option>
+          <option value="other">Other</option>
         </select>
 
         { inputField.map(inputData => (

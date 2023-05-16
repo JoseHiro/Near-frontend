@@ -1,0 +1,12 @@
+.search_engine_form {
+  display: block !important;
+}
+
+.search_engine_form input {
+  width: 70%;
+}
+
+.search_engine_form button {
+  padding: 12px;
+  border-radius: 0 15px 15px 0;
+}

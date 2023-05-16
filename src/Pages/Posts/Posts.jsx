@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import {searchPost} from '../../Search/search';
+import SearchBar from "../../Components/Search-bar/Search-Bar";
 import './posts.css';
 
 const Posts = () =>{
   const [posts, setPosts] = useState([]);
+  const [keyword, setKeyword] = useState('');
+
   useEffect(() =>{
     fetch('http://localhost:8080/posts')
     .then(response =>{
@@ -14,8 +18,20 @@ const Posts = () =>{
     })
   },[])
 
+  const handelSearch = async (e) => {
+    e.preventDefault();
+    const posts = await searchPost(keyword);
+    setPosts(posts);
+  }
+
+  const handelInput = (e) => {
+    setKeyword(e.target.value);
+  }
+
   return (
     <section id="posts_container">
+      <SearchBar onSubmit={handelSearch} onChange={handelInput} value={keyword} placeholder="Search job name or category.."/>
+
       <div className="posts">
       { posts.map((post, index) => {
         return (
