@@ -32,7 +32,6 @@ const Navbar = () =>{
           <div className="navbar_contents">
             <Link to="/signout" onClick={handleSignOut}>Signout</Link>
             <Link to="/user">User</Link>
-            <p>Hello!</p>
           </div>
           :
           <div className="navbar_contents">

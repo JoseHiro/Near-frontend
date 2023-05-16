@@ -22,7 +22,7 @@
   transition: 350ms;
 }
 
-.nav_text {
+.sidenav_text {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -31,7 +31,7 @@
   height: 60px;
 }
 
-.nav_text a{
+.sidenav_text a{
   text-decoration: none;
   color: white !important;
   font-size: 18px;
@@ -49,7 +49,7 @@
   background: none;
 }
 
-.nav_text a:hover {
+.sidenav_text a:hover {
   background-color: #68a063;
 }
 
