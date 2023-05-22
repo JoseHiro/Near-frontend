@@ -35,15 +35,14 @@ function Burger() {
         <ul className='nav_menu_items'>
           <li className='navbar_toggle'>
             <Link to="#" className='menu_bars'>
-              <AiOutlineClose onClick={showSidebar}/>
+              <AiOutlineClose onClick={() => showSidebar}/>
             </Link>
           </li>
           {
             SidebarData.map((item, index) => {
               return (
-                <li key={index} className={item.cName} onClick={item.title === 'Signout' && {handleSignOut}}
+                <li key={index} className={item.cName} onClick={item.title === 'Signout' ? () => handleSignOut : undefined}
                   style={{display: (display(item.cName)) && 'none'}}>
-                    {console.log((auth.isLoggedIn )&& (item.cName.includes("sidenav_logged_in")))}
                   <Link to={item.path}>
                     {item.icon}
                     <span>{item.title}</span>

@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home';
 import User from './Pages/User/User';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import Geocode from './Components/Geocode/Geocode';
+import Messages from './Pages/Messages/Messages/Messeges';
 
 import Posts from './Pages/Posts/Posts';
 import Post from './Pages/Posts/Post/Post';
@@ -19,16 +20,11 @@ import PostJob from './Pages/Posts/Post-Job/Post-job';
 import './index.css';
 
 function App() {
-
-
-
   // const [loginState, setLogin] = useState({token: null, userId: null})
   const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false);
-  const [userName, setUserName] = useState(false);
+  // const [userId, setUserId] = useState(false);
+  // const [userName, setUserName] = useState(false);
   const navigate = useNavigate();
-
-  console.log(token);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -46,16 +42,16 @@ function App() {
     }
 
     setToken(token);
-    setUserId(userId);
+    // setUserId(userId);
   },[])
 
   const login = useCallback(() =>{
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
-    const userName = localStorage.getItem('userName');
+    // const userId = localStorage.getItem('userId');
+    // const userName = localStorage.getItem('userName');
     setToken(token);
-    setUserId(userId);
-    setUserName(userName);
+    // setUserId(userId);
+    // setUserName(userName);
   },[])
 
   const logout = useCallback(()=>{
@@ -64,8 +60,8 @@ function App() {
     localStorage.removeItem('userId');
     localStorage.removeItem('userName');
     setToken(null);
-    setUserId(null);
-    setUserName(null);
+    // setUserId(null);
+    // setUserName(null);
     navigate('/');
   },[])
 
@@ -93,6 +89,7 @@ function App() {
         <Route path={`/`} element={<Home/>}></Route>
         <Route path={`/signin`} element={<Signin/>}></Route>
         <Route path={`/login`} element={<Login/>}></Route>
+        <Route path={`/chat/:recieverId`} element={<Messages/>}></Route>
         <Route path={`/map`} element={<Geocode/>}></Route>
 
         <Route path={`/posts`} element={<Posts/>}></Route>

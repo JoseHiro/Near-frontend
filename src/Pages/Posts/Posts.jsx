@@ -31,21 +31,21 @@ const Posts = () =>{
   return (
     <section id="posts_container">
       <SearchBar onSubmit={handelSearch} onChange={handelInput} value={keyword} placeholder="Search job name or category.."/>
-
+      <hr/>
       <div className="posts">
       { posts.map((post, index) => {
         return (
-          <Link to={`/post/${post._id}`}>
-            <article key={index} className="post">
+          <Link key={index} to={`/post/${post._id}`}>
+            <article  className="post">
               <img alt="" src={post.imageUrl}></img>
               <div className="post_info">
                 <div className="post_price_star">
-                  <h3>{post.title}</h3>
+                  <h4 className="post_title">{post.title}</h4>
                   <p>{post.category}</p>
                 </div>
                 <div className="post_price_star">
-                  <h3>{post.price} $</h3>
-                  <h4>★★★★★</h4>
+                  <h4>{post.price} $</h4>
+                  <h5>★★★★★</h5>
                 </div>
               </div>
             </article>

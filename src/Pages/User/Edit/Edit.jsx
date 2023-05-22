@@ -103,7 +103,7 @@ const Edit = (props) =>{
   return (
     <section>
       {(displayError) && <PopUpMessage message={error}/>}
-      <form onSubmit={handleEditUser}>
+      <form className="common_form" onSubmit={handleEditUser}>
         { inputField.map(inputData => (
           <Input
             key={inputData.id}

@@ -56,8 +56,8 @@ const EditProfile = () => {
   ]
 
     return (
-      <form onSubmit={handleEditUser}>
-        <Input type={"file"} label={"Profile image"}/>
+      <form className="common_form" onSubmit={handleEditUser}>
+        <Input type={"file"}  label={"Profile image"}/>
         { inputField.map(inputData => (
           <Textarea
             key={inputData.id}

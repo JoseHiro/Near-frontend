@@ -30,8 +30,9 @@ const Navbar = () =>{
       <nav className="navbar_right">
         { auth.isLoggedIn?
           <div className="navbar_contents">
-            <Link to="/signout" onClick={handleSignOut}>Signout</Link>
             <Link to="/user">User</Link>
+            <Link to="/message">Message</Link>
+            <Link to="/signout" onClick={handleSignOut}>Signout</Link>
           </div>
           :
           <div className="navbar_contents">
