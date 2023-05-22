@@ -105,7 +105,7 @@ const PostJob = () => {
     <section id="post_job_container">
       <h2>Post your talent to save life</h2>
       {(displayError )&& <PopUpMessage message={error}/> }
-      <form onSubmit={handelInput}>
+      <form className="common_form" onSubmit={handelInput}>
 
         <label>Category</label>
         <select name="category" onChange={handleChange} value={input.category} className={errorFields.includes('imageUrl')? 'error' : ''} >

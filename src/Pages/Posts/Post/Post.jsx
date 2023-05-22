@@ -9,7 +9,6 @@ const Post = () => {
 
   useEffect(() =>{
     const token = getAuthToken();
-    console.log(token);
     fetch('http://localhost:8080/post/' + postId, {
       headers: {
         'Authorization': 'Bearer ' + token
@@ -24,9 +23,12 @@ const Post = () => {
       <div className="post_head">
         <div>
           <h1>{post.title}</h1>
-          <Link><p>{post.poster}</p></Link>
+          <div className="post_head_user">
+            <img alt="" src="https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png"></img>
+            <Link><p>{post.poster}</p></Link>
+          </div>
         </div>
-        <Link to={'/post/edit/' + postId}>Edit</Link>
+        <Link href={'/post/edit/' + postId}>Edit</Link>
       </div>
       <div className="post_content">
         <img alt="" src={post.imageUrl}></img>
@@ -35,10 +37,10 @@ const Post = () => {
             <h2>{post.price} $</h2>
             <h3>★★★★★</h3>
           </div>
-          <Link>Check Feedbacks</Link>
+          <a href="#post_reviews">Check Feedbacks</a>
           <h3>{post.category}</h3>
           <div className="post_buttons">
-            <button>Contact poster</button>
+            <Link to={'/chat/' + post.posterId}><button>Contact poster</button></Link>
             <button>Reserve</button>
           </div>
         </article>
@@ -50,7 +52,7 @@ const Post = () => {
         <p>{post.description}</p>
       </div>
 
-      <div className="post_reviews">
+      <div id="post_reviews" className="post_reviews">
         <hr/>
         <h3 className="post_description_title">Reviews</h3>
         <div className="post_reviews_container">

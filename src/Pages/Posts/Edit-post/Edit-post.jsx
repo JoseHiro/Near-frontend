@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import PopUpMessage from '../../../Components/Popup-message/Popup-message';
 import Input from '../../../Components/Input/Input';
 import Textarea from '../../../Components/Textarea/Textarea';
-import './edit-post.css';
+// import './edit-post.css';
 
 const EditJob = () => {
   const [input, setInput] = useState({title: '', imageUrl: '', category: '', description: '', price : ''});
@@ -115,8 +115,8 @@ const EditJob = () => {
     <section id="post_job_container">
       <h2>Edit your post</h2>
       {(displayError )&& <PopUpMessage message={error}/> }
-      <form onSubmit={handelInput}>
 
+      <form className="common_form" onSubmit={handelInput}>
         <label>Category</label>
         <select name="category" onChange={handleChange} value={input.category} className={errorFields.includes('imageUrl')? 'error' : ''} >
           <option value="">- Choose</option>

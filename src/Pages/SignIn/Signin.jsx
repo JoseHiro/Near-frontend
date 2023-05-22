@@ -72,7 +72,7 @@ function Form(){
       className: errorFields.includes('email')? 'error' : '',
       errorMessage: "Password should be 8-20 characters that includes at least one 1 letter, 1 number and 1 special character",
       // pattern: `^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^*]{8,20}$`,
-      pattern: `^[a-zA-Z0-9!@#$%^*]{6,20}$`,
+      // pattern: `^[a-zA-Z0-9!@#$%^*]{6,20}$`,
     },
     {
       id:3,
@@ -81,16 +81,16 @@ function Form(){
       name: "password",
       value: input.password,
       className: errorFields.includes('password')? 'error' : '',
-      errorMessage: "Password should be 8-20 characters that includes at least one 1 letter, 1 number and 1 special character",
+      errorMessage: "Password should be 6-20 characters that includes at least one 1 letter, 1 number and 1 special character",
       // pattern: `^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^*]{8,20}$`,
-      pattern: `^[a-zA-Z0-9!@#$%^*]{6,20}$`,
+      // pattern: `^[a-zA-Z0-9!@#$%^*]{6,20}$`,
     }
   ]
 
   return(
     <section>
       {(displayError) && <PopUpMessage message={error}/>}
-      <form className="container" onSubmit={handleSubmit}>
+      <form className="common_form" onSubmit={handleSubmit}>
         { inputField.map(inputData => (
           <Input
             key={inputData.id}

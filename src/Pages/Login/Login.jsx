@@ -3,6 +3,7 @@ import { AuthContext } from '../../Context/auth-context';
 import { useNavigate} from 'react-router-dom';
 import PopUpMessage from '../../Components/Popup-message/Popup-message';
 import Input from '../../Components/Input/Input';
+import './login.css';
 
 function Login(){
   const [input, setInput] = useState({email: '', password:''})
@@ -86,7 +87,7 @@ function Login(){
   return (
     <section>
       {(displayError) && <PopUpMessage message={error}/> }
-      <form onSubmit={handlePostLogin}>
+      <form onSubmit={handlePostLogin} className="common_form">
         { inputField.map(inputData => (
           <Input
             key={inputData.id}

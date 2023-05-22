@@ -1,9 +1,15 @@
+#posts_container hr {
+  width: 90%;
+  margin: 0 auto;
+  background: var(--background-white)
+}
+
 .posts {
   color: black;
   display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  gap: 20px;
-  margin: 20px 3%;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 4% 4%;
+  margin: 20px 20px !important;
 }
 
 .posts a{
@@ -11,9 +17,12 @@
 }
 
 #posts_container article {
-  background: var(--background-white);
-  box-shadow: var(--box-shadow);
   border-radius: 15px;
+  border: 1px solid #eee;
+}
+
+#posts_container article:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 #posts_container article img{
@@ -24,10 +33,41 @@
   object-fit: cover;
 }
 
+.post_title {
+  width: 225px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .post_info {
   padding-left: 5%;
   padding-top: 3%;
   padding-bottom: 3%;
+  color: var(--text-light-black);
+}
+
+.post_info p{
+  color: var(--text-grey)
+}
+
+.search_engine_form {
+  display: flex;
+  margin: 20px auto;
+  width: 60%;
+  border-radius: 0 15px 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.search_engine_form input {
+  padding: 12px;
+  border: 2px solid white;
+  width: 90%;
+}
+
+.search_engine_form button {
+  padding: 12px;
+  border-radius: 0 15px 15px 0;
 }
 
 
@@ -36,7 +76,6 @@
     grid-template-columns: repeat(2, 2fr);
   }
 }
-
 
 @media screen and (max-width: 680px){
   .posts {

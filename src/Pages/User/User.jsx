@@ -12,7 +12,8 @@ const User = () =>{
   const navItem = [
     { title: "User profile"},
     { title: "User informatioin"},
-    { title: "Your posts"},
+    { title: "My posts"},
+    { title: "My bookings"},
     { title: "Payments"},
     { title: "Delete"},
   ]
@@ -24,7 +25,8 @@ const User = () =>{
       <img alt='' src='https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg'></img>
       <EditProfile/>
     </>,
-    <><Edit/></>,
+    <><Edit
+    /></>,
     <div className="user_posts_container">
       <h3>Posts</h3>
       <UserPosts/>

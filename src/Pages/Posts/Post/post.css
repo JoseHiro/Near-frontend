@@ -3,6 +3,18 @@
   margin-bottom: 10px;
 }
 
+#post_container .post_head img {
+  border-radius: 50%;
+  width: 30px;
+}
+
+.post_head_user {
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 #post_container .post_content{
   display: flex;
   justify-content: center;
@@ -52,10 +64,6 @@
 
 .post_detail p{
   font-size: 15px;
-}
-
-.post-info {
-
 }
 
 .post_reviews {
