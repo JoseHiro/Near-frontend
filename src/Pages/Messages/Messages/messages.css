@@ -1,14 +1,14 @@
 #messages_container {
   display: flex;
+  width: 100%;
 }
 
 .messagers article {
-  width: 300px;
+  width: 200px;
   height: 80px;
   border: 1px solid var(--text-grey-light);
 }
 
 .messages {
   width: 100%;
-  /* background: antiquewhite; */
 }
