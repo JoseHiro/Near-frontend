@@ -89,7 +89,8 @@ function App() {
         <Route path={`/`} element={<Home/>}></Route>
         <Route path={`/signin`} element={<Signin/>}></Route>
         <Route path={`/login`} element={<Login/>}></Route>
-        <Route path={`/chat/:recieverId`} element={<Messages/>}></Route>
+        <Route path={`/chats`} element={<Messages/>}></Route>
+        <Route path={`/chats/:recieverId`} element={<Messages/>}></Route>
         <Route path={`/map`} element={<Geocode/>}></Route>
 
         <Route path={`/posts`} element={<Posts/>}></Route>

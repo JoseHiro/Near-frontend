@@ -1,30 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
 import Message from '../Message/ Message';
+import {getAuthToken} from '../../../Auth/auth';
 import './messages.css';
+
 const Messages = () => {
 
-  const member = ["Mike", "Emily", "Frank", "Kevin", "Lin", "David", "Frank", "Kevin", "Lin", "David"]
+  const [chats, setChats] = useState([]);
+
+  useEffect(() => {
+
+    const token = getAuthToken();
+    const getChatMembers = async () => {
+      const response = await fetch('http://localhost:8080/chat/members', {
+        headers: {
+          'Authorization' : 'Bearer ' + token
+        }
+      })
+
+      const resData = await response.json();
+      console.log(resData.chatMember);
+      setChats(resData.chatMember);
+    }
+
+    getChatMembers();
+  },[])
 
   return (
     <section id="messages_container">
-      <div className='messagers'>
-        <div className="messages_container_title" >
-          <h4>Users</h4>
+      <div className="inbox">
+        <div className='messangers'>
+          <div className="messages_container_title_user" >
+            <h2>Users</h2>
+          </div>
+          {chats.map((chat, index) => {
+            return (
+            <a href={'/chats/' + chat.memberId} key={index}>
+              <article>
+                <img className='message_profile_img' alt='' src="https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png"></img>
+                <div>
+                  <h4>{chat.name}</h4>
+                  <p>Last message...</p>
+                </div>
+              </article>
+            </a>
+            )
+          })}
         </div>
-        {member.map((name, index) => {
-          return (
-          <article key={index}>
-            <h4>name</h4>
-          </article>
-          )
-        })}
-      </div>
 
-      <div className='messages'>
-        <div className="messages_container_title" >
-          <h4>Messages</h4>
+        <div className='messages'>
+          <div className="messages_container_title_messages" >
+            <h2>Messages</h2>
+          </div>
+          <Message/>
         </div>
-        <Message/>
       </div>
     </section>
   )

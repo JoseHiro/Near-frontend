@@ -5,31 +5,31 @@ import {AiOutlineSend} from 'react-icons/ai';
 import { getAuthToken } from '../../../Auth/auth';
 import './message.css';
 
-// const socket = io('http://localhost:8080');
-
 function  Message() {
   const [message, setMessage] = useState('')
   const [socket, setSocket] = useState('');
   const [typing, setTyping] = useState(false);
   const [chat, setChat] = useState([]);
-  const [chatroomId, setChatroomId] = useState('6467e45da053d67cee5f1b44');
+  const [chatroomId, setChatroomId] = useState('');
   const [typingTimeOut, setTypingTimeOut] = useState(null)
   const {recieverId} = useParams();
 
   const senderToken = getAuthToken();
 
   useEffect(() => {
-
     const getChatroom = async () => {
-      const response = fetch('http://localhost:8080/chat/' + recieverId, {
+      const response = await fetch('http://localhost:8080/chat/' + recieverId, {
         headers: {
           'Authorization' : 'Bearer ' + senderToken
         }
       })
+
+      const resData = await response.json();
+
+      setChatroomId(resData.chatroomId);
+      setChat(resData.chat);
     }
-
-    getChatroom();
-
+    if(recieverId) getChatroom();
   },[])
 
   useEffect(() => {
@@ -43,8 +43,8 @@ function  Message() {
       setChat((prev) => [...prev, { message: data.message, sender: false, time: data.time }]);
     })
 
-    socket.on('typing-from-server', () => setTyping(true))
-    socket.on('typing-stopped-from-server', () => setTyping(false))
+    socket.on('typing-from-server', () => setTyping(true));
+    socket.on('typing-stopped-from-server', () => setTyping(false));
 
   }, [socket])
 
@@ -85,6 +85,7 @@ function  Message() {
     }, 200));
   }
 
+  if(!chatroomId) return (<div className="empty_chat_box"></div>)
   return (
     <div className="chat_box">
       <div className='chat_box_message'>
@@ -93,29 +94,12 @@ function  Message() {
             {(!data.sender) && <img className='message_profile_img' alt='' src="https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png"></img>}
             <div>
               <p className="message">{data.message}</p>
-              <time>{data.time}</time>
+              {/* <time>{data.time}</time> */}
             </div>
             {(data.sender) && <img className='message_profile_img' alt='' src="https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png"></img>}
           </div>
         ))
         }
-
-        {/* <div className='reciever_message'>
-          <img className='message_profile_img' alt='' src="https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png"></img>
-          <div>
-            <p className="message">Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there! Hello there!</p>
-            <time>10:20</time>
-          </div>
-        </div>
-
-        <div className='sender_message'>
-          <div>
-            <p className="message">Lorem</p>
-            <time>10:20</time>
-          </div>
-          <img className='message_profile_img' alt='' src="https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/no-profile-picture-icon.png"></img>
-        </div>
-        */}
 
       </div>
       {
