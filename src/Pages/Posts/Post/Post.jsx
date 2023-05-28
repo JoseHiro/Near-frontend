@@ -40,7 +40,7 @@ const Post = () => {
           <a href="#post_reviews">Check Feedbacks</a>
           <h3>{post.category}</h3>
           <div className="post_buttons">
-            <Link to={'/chat/' + post.posterId}><button>Contact poster</button></Link>
+            <Link to={'/chats/' + post.posterId}><button>Contact poster</button></Link>
             <button>Reserve</button>
           </div>
         </article>
